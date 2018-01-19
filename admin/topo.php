@@ -1,0 +1,52 @@
+<!doctype html>
+<html dir="ltr" lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <title>Dexter Courier | Home</title>
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../include/css/style.css">
+        <!-- Le styles -->
+        <link href="../include/css/bootstrap.css" rel="stylesheet">
+        <link href="../include/css/bootstrap-responsive.css" rel="stylesheet">
+        <script src="../include/js/jquery.js"></script>
+        <script src="../include/js/bootstrap.js"></script>
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container">
+	        <a href="index.php" class="logo left">Dexter Courier</a>
+            <div class="btn-group pull-right">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                 	<i class="icon-user"></i>
+					<?php echo ( isset( $_SESSION["usuario"] ) ) ? $_SESSION["usuario"] : '' ?>
+					<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-wrench"></i> Opções</a></li>
+                    <li class="divider"></li>
+                    <li><a href="logout.php"><i class="icon-share"></i> Logout</a></li>
+                </ul>
+            </div>
+	        <nav class="right" style="margin-top:80px">
+		        <ul>
+                <?php
+                    require_once('../config.php');
+                    require_once('../include/utils.php');
+                    $paginas[] = array('url' => 'index.php', 'label' => 'Home');
+                    $paginas[] = array('url' => 'clientes.php', 'label' => 'Clientes');
+                    $paginas[] = array('url' => 'funcionarios.php', 'label' => 'Funcionarios');
+                    $paginas[] = array('url' => 'servicos.php', 'label' => 'Serviços');
+                    $paginas[] = array('url' => 'mensagens.php', 'label' => 'Mensagens');
+                    $paginas[] = array('url' => 'index.php', 'label' => 'Funcionalidades');
+                    foreach($paginas as $pagina):          
+                ?>
+                <li class="<?= VerificaPagina($pagina['url']) ? 'active' : '' ?>"><a href="<?= $pagina['url'] ?>"> <?= $pagina['label'] ?> </a></li>
+	            <?php endforeach; ?>
+		        </ul>
+
+	        </nav>
+        </div>
